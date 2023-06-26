@@ -12,6 +12,14 @@ import { Card, Grid, ListItemButton, ListItemText, Checkbox} from "@mui/material
 const Todos = ({ todos, deleteTodo }) => {
   const todoList = todos.length ? (
     todos.map((todo) => {
+      const currentDate = new Date();
+      const dueDate = new Date(todo.dueDate);
+      let color = "#ffffffff"; // Default color is white
+
+      // Check if the due date is in the past
+      if (dueDate < currentDate) {
+        color = "#ffcccc"; // Set color to indicate overdue tasks
+      }
       return (
         <Grid key={todo.id}>
           <Card style={{marginTop:10}}>
